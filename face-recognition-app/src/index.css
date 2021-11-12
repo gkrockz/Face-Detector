@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
+
+body 
+{
+   margin: 0;
+   font-family: 'Fira Sans', sans-serif;
+   background:linear-gradient(90deg, rgba(18,183,213,1) 12%, rgba(252,70,107,1) 100%);
+}
+button
+{
+	cursor:pointer;
+}
+
+.custom-bg {
+   background-color:#cad1ce85;
+ }
+
+ .out {
+    outline: none;
+ }
+
+ .hover-bg-white {
+    background-color: #cad1ce85!important;
+ }
+
+ .b {
+    letter-spacing: 2.5px !important;
+ }
