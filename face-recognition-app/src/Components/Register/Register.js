@@ -6,7 +6,8 @@ class Register extends React.Component {
 		this.state = {
 			email:'',
 			password: '',
-			name:''
+			name:'',
+			loading: false,
 		}
 	}
 	onNameChange = (event) => {
@@ -37,8 +38,16 @@ class Register extends React.Component {
 		 })
 	
 	}
+	registerUser = () => {
+		this.setState({loading:true});
+		this.onSubmitSignIn();
+		setTimeout(()=> {
+			this.setState({loading:false});
+		},8000)
+	}
 
 	render() {
+		const { loading } = this.state;
 	return (
 		<article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center custom-bg">	
 		<main className="pa4 black-80">
@@ -58,8 +67,12 @@ class Register extends React.Component {
 					      <input className="b pa2 ba b--black input-reset ba bg-transparent hover-bg-white hover-black w-100" type="password" name="password"  id="password" onChange={this.onPasswordChange}/>
 					    </div>
 				</fieldset>
-				<div className="">
-				      <input className="b ph3 pv2 input-reset  b--black bg-transparent grow pointer f6 dib" type="submit" value="Sign Up" onClick={this.onSubmitSignIn} />
+				<div>
+				      <button className="b ph3 pv2 input-reset  b--black bg-transparent grow pointer f6 dib" type="submit" onClick={this.registerUser}>
+						{ loading && <i class="fa fa-circle-o-notch fa-spin spinner"></i>}
+						{ loading && <span>Registering User...</span>}
+						{ !loading && <span>Register</span>}
+					  </button>
 				</div>
 		    </div>
 		</main>

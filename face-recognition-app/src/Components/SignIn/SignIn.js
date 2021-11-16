@@ -5,7 +5,8 @@ class SignIn extends React.Component {
 		super(props);
 		this.state = {
 			signInEmail:'',
-			signInPassword: ''
+			signInPassword: '',
+			loading: false,
 		}
 	}
     
@@ -34,7 +35,16 @@ class SignIn extends React.Component {
       })
 	}
 	
+	fetchUser = () => {
+		this.setState({loading:true});
+		this.onSubmitSignIn();
+		setTimeout(()=> {
+			this.setState({loading:false});
+		},8000)
+	}
+
     render() {
+		const { loading } = this.state;
     return (
     <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center custom-bg">	
 		<main className="pa4 black-80">
@@ -50,8 +60,12 @@ class SignIn extends React.Component {
 				      <input onChange={this.onPasswordChange} className="b pa2 ba b--black input-reset ba bg-transparent hover-bg-white hover-black w-100" type="password" name="password"  id="password" />
 				    </div>
 				</fieldset>
-				<div className="">
-				    <input className="b ph3 pv2 input-reset b--black bg-transparent grow pointer f6 dib" type="submit" value="Sign In" onClick={this.onSubmitSignIn} />
+				<div >
+				    <button className="b ph3 pv2 input-reset b--black bg-transparent grow pointer f6 dib" type="submit" onClick={this.fetchUser}>
+						{ loading && <i class="fa fa-circle-o-notch fa-spin spinner"></i>}
+						{ loading && <span>Loading...</span>}
+						{ !loading && <span>Sign In</span>}
+					</button>	
 			    </div>
 		    </div>
 		</main>
